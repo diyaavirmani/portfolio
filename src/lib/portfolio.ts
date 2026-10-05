@@ -4,8 +4,6 @@ export const profile = {
   name: "Diya Virmani",
   location: "New Delhi",
   email: "diyavirmani41@gmail.com",
-  phone: "+91-8800703686",
-  phoneHref: "tel:+918800703686",
   github: "https://github.com/diyaavirmani",
   githubUsername: "diyaavirmani",
   linkedin: "https://www.linkedin.com/in/diya-virmani-3bb62b1a0/",

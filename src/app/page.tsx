@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import GitHubCalendar from "react-github-calendar";
-import { ArrowUpRight, ChevronDown, ChevronUp, Github, Linkedin, Mail, Music2, Phone, Terminal } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Github, Linkedin, Mail, Music2, Terminal } from "lucide-react";
 import { achievements, experience, leadershipRoles, music, profile, projects, skillGroups, type Experience, type Skill as PortfolioSkill } from "@/lib/portfolio";
 
 const Toggle = ({ open, onClick }: { open: boolean; onClick: () => void }) => <button className="see-toggle" onClick={onClick}>{open ? "See less" : "See more"}{open ? <ChevronUp size={17}/> : <ChevronDown size={17}/>}</button>;
@@ -20,7 +20,7 @@ export default function Portfolio() {
   };
   return <main className={`portfolio ${isNavigating ? "portfolio-leaving" : ""}`} id="top">
     <section className="profile-banner" aria-label="Profile banner"><img className="banner-image" src="/night-street-banner.jpeg" alt="A warmly lit city street at night with glowing shop windows and lampposts" width={736} height={245}/><div className="profile-photo-wrap"><button type="button" className="profile-photo" onClick={openColoredFolio} aria-label="Open colored portfolio"><img className="photo-face photo-front" src={profile.portrait} alt="Diya Virmani — illustrated portrait"/></button></div></section>
-    <header className="intro"><div className="intro-copy"><h1>{profile.name}</h1><blockquote className="intro-quote"><p>&ldquo;The more I study, the more insatiable do I feel my genius for it to be.&rdquo;</p><cite>~ Ada Lovelace <span>· World&apos;s first computer programmer</span></cite></blockquote></div><div className="contact-icons"><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github/></a><a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin/></a><a href={`mailto:${profile.email}`} aria-label="Email"><Mail/></a><a href={profile.phoneHref} aria-label={`Phone: ${profile.phone}`}><Phone/></a></div></header>
+    <header className="intro"><div className="intro-copy"><h1>{profile.name}</h1><blockquote className="intro-quote"><p>&ldquo;The more I study, the more insatiable do I feel my genius for it to be.&rdquo;</p><cite>~ Ada Lovelace <span>· World&apos;s first computer programmer</span></cite></blockquote></div><div className="contact-icons"><a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github/></a><a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin/></a><a href={`mailto:${profile.email}`} aria-label="Email"><Mail/></a></div></header>
     <section className="about"><p>{profile.introduction}</p><p>{profile.education}</p><div className="intro-actions"><a className="bright-button" href={`mailto:${profile.email}`}>Let&apos;s work together <ArrowUpRight size={16}/></a><a className="outline-button" href={profile.github} target="_blank" rel="noreferrer">View GitHub</a></div></section>
 
     <section className="performance portfolio-section" aria-labelledby="activity-heading"><div className="section-title"><h2 id="activity-heading">GitHub activity</h2></div><GitHubCalendar username={profile.githubUsername} colorScheme="dark" theme={{ dark: ["#2a2a2a", "#444444", "#696969", "#969696", "#dedede"] }} hideColorLegend hideTotalCount blockSize={11} blockMargin={4} fontSize={13}/></section>
