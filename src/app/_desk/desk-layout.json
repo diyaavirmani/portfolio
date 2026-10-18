@@ -1,0 +1,230 @@
+{
+  "window": {
+    "dx": -186.5,
+    "dy": -25,
+    "scale": 0.1,
+    "cx": 1202.56,
+    "cy": 494,
+    "z": 0,
+    "deleted": true
+  },
+  "intro": {
+    "dx": -44,
+    "dy": 27,
+    "scale": 1.18,
+    "cx": 800,
+    "cy": 244
+  },
+  "curtains": {
+    "z": 1,
+    "deleted": true
+  },
+  "clock": {
+    "dx": -1359.5,
+    "dy": 640,
+    "z": 4
+  },
+  "pegboard": {
+    "dx": 1313.5,
+    "dy": 307.5,
+    "scale": 0.79,
+    "rotate": 1,
+    "cx": 223.5,
+    "cy": 303.639,
+    "z": 6
+  },
+  "quote": {
+    "dx": 10.5,
+    "dy": 214,
+    "scale": 1.08,
+    "cx": 222.605,
+    "cy": 85.942,
+    "deleted": true
+  },
+  "print-messi": {
+    "dx": -120,
+    "dy": -29.5,
+    "scale": 1.84,
+    "cx": 239.134,
+    "cy": 182.78
+  },
+  "print-dear-zindagi": {
+    "dx": -84.5,
+    "dy": 205.5,
+    "scale": 1.74,
+    "rotate": -3,
+    "cx": 303.518,
+    "cy": 184.261
+  },
+  "print-snoopy": {
+    "dx": -271.5,
+    "dy": 261.5
+  },
+  "print-gym": {
+    "dx": -144.5,
+    "dy": 31
+  },
+  "print-octocat": {
+    "dx": 18,
+    "dy": -73.5,
+    "scale": 0.69,
+    "cx": 346.975,
+    "cy": 288.24,
+    "deleted": true
+  },
+  "print-taylor": {
+    "dx": 376,
+    "dy": -38,
+    "scale": 1.54,
+    "cx": -120.798,
+    "cy": 188.39
+  },
+  "photo-strip": {
+    "deleted": true
+  },
+  "sunglasses": {
+    "deleted": true
+  },
+  "ticket": {
+    "deleted": true
+  },
+  "commit-card": {
+    "dx": -14,
+    "dy": 33,
+    "deleted": true
+  },
+  "bracelet": {
+    "deleted": true
+  },
+  "evil-eye": {
+    "deleted": true
+  },
+  "micro-lights": {
+    "deleted": true
+  },
+  "bookshelf": {
+    "dx": -1168.25,
+    "dy": -209.5,
+    "scale": 0.78,
+    "cx": 1367.25,
+    "cy": 438.5,
+    "z": 5,
+    "deleted": true
+  },
+  "moonlight": {
+    "z": 7
+  },
+  "lamp-glow": {
+    "z": 8
+  },
+  "sticky-cube": {
+    "dx": 1331.5,
+    "dy": -19.5,
+    "z": 10,
+    "deleted": true
+  },
+  "macbook": {
+    "z": 11
+  },
+  "pookie-mug": {
+    "dx": 603.5,
+    "dy": -0.5,
+    "z": 12
+  },
+  "clawd": {
+    "dx": 373.5,
+    "dy": 10.5,
+    "scale": 0.63,
+    "cx": 754,
+    "cy": 771,
+    "z": 13
+  },
+  "sprite-can": {
+    "dx": 15,
+    "dy": -1.5,
+    "z": 14
+  },
+  "lamp": {
+    "dx": -3.8,
+    "dy": 91.2,
+    "scale": 1.15,
+    "rotate": 1,
+    "cx": 897.496,
+    "cy": 609.5,
+    "z": 15
+  },
+  "lamp-books": {
+    "dx": -92.5,
+    "dy": 4,
+    "scale": 0.71,
+    "rotate": 90,
+    "cx": 920,
+    "cy": 749.45
+  },
+  "switchboard": {
+    "dx": -14.5,
+    "dy": 101,
+    "z": 16
+  },
+  "platform-sign": {
+    "dx": -1265.5,
+    "dy": -118.5,
+    "scale": 0.72,
+    "cx": 1244.75,
+    "cy": 218.8
+  },
+  "wall-frame": {
+    "dx": -477.5,
+    "dy": 481,
+    "scale": 0.55,
+    "cx": 1175.5,
+    "cy": 264
+  },
+  "polaroid-2": {
+    "dx": 1364.5,
+    "dy": 237,
+    "scale": 0.92,
+    "cx": 216.328,
+    "cy": 40.958
+  },
+  "key-clicker": {
+    "dx": 705,
+    "dy": 11.5
+  },
+  "old-laptop": {
+    "dx": 44.5,
+    "dy": -327,
+    "scale": 0.45,
+    "rotate": -21,
+    "cx": 1210.22,
+    "cy": 705.275,
+    "z": 17,
+    "deleted": true
+  },
+  "book-stack": {
+    "z": 18,
+    "deleted": true
+  },
+  "notebook": {
+    "dx": 201.5,
+    "dy": 9.5,
+    "z": 19
+  },
+  "paper-ball": {
+    "z": 20,
+    "deleted": true
+  },
+  "calendar": {
+    "dx": 343,
+    "dy": -2.5,
+    "scale": 1.13,
+    "cx": 1012.72,
+    "cy": 752.82,
+    "z": 21
+  },
+  "speaker": {
+    "dx": 162.5,
+    "dy": 6.5,
+    "z": 22
+  }
+}

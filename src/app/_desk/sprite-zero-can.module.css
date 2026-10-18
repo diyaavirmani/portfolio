@@ -1,0 +1,80 @@
+/* The can photo is evenly lit; tone it down for the lamplit room. */
+.can {
+  filter: brightness(0.86) saturate(0.94);
+}
+
+/* A quick squash, hop and settle from the base. The can's base centre is the group's origin, so the
+   transform pivots there however far the bubbles spread. Two identical copies under different names
+   let the hop restart on every pop by swapping the class. */
+.popA,
+.popB {
+  transform-origin: 0 0;
+}
+
+.popA {
+  animation: canPopA 0.55s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+}
+
+.popB {
+  animation: canPopB 0.55s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+}
+
+@keyframes canPopA {
+  0% { transform: none; }
+  16% { transform: scale(1.06, 0.92); }
+  40% { transform: translateY(-9px) scale(0.97, 1.05); }
+  64% { transform: scale(1.04, 0.96); }
+  82% { transform: translateY(-1.5px) scale(0.99, 1.01); }
+  100% { transform: none; }
+}
+
+@keyframes canPopB {
+  0% { transform: none; }
+  16% { transform: scale(1.06, 0.92); }
+  40% { transform: translateY(-9px) scale(0.97, 1.05); }
+  64% { transform: scale(1.04, 0.96); }
+  82% { transform: translateY(-1.5px) scale(0.99, 1.01); }
+  100% { transform: none; }
+}
+
+.bubble {
+  fill: #f2fff4;
+  stroke: #bff2cd;
+  stroke-width: 0.35;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubbleRise 0.95s ease-out both;
+}
+
+@keyframes bubbleRise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  15% { opacity: 0.95; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1); }
+}
+
+.mist {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: canMist 0.9s ease-out 0.05s both;
+}
+
+@keyframes canMist {
+  0% { opacity: 0; transform: translateY(2px) scale(0.5); }
+  25% { opacity: 0.35; }
+  100% { opacity: 0; transform: translateY(-10px) scale(1.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popA,
+  .popB,
+  .bubble,
+  .mist {
+    animation: none;
+  }
+
+  .fizz {
+    display: none;
+  }
+}
