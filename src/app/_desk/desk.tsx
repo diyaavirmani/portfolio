@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent, type RefObject } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent, type RefObject } from "react";
 import dynamic from "next/dynamic";
 import { createPortal } from "react-dom";
 import { FileText, Github, Linkedin, Mail, MapPin } from "lucide-react";
@@ -308,7 +308,7 @@ function LampGlow() {
   </g>;
 }
 
-function Room({ time, svgRef, lampOn, onToggleLamp }: { time: { h: number; m: number } | null; svgRef: RefObject<SVGSVGElement>; lampOn: boolean; onToggleLamp?: () => void }) {
+function Room({ time, svgRef, lampOn, onToggleLamp, frame }: { time: { h: number; m: number } | null; svgRef: RefObject<SVGSVGElement>; lampOn: boolean; onToggleLamp?: () => void; frame: { x: number; width: number } }) {
   // Hovering the wall switch shows a small reminder above it, drawn as HTML like Clawd's greeting.
   const [switchHint, setSwitchHint] = useState<{ x: number; y: number; host: Element } | null>(null);
 
@@ -327,7 +327,7 @@ function Room({ time, svgRef, lampOn, onToggleLamp }: { time: { h: number; m: nu
     setSwitchHint({ x: box.left + box.width / 2, y: box.top, host });
   };
 
-  return <svg ref={svgRef} className={s.roomSvg} viewBox="0 0 1600 800" role="img" aria-label="An illustrated evening study. On the left, a black wire grid hung on two clear hooks, with a strand of tiny warm lights wound through it: Diya's prints of Lionel Messi, a Dear Zindagi poster, Snoopy in a graduation cap and a G:YM card held by wooden clothespins, a black-and-white photo-booth strip of Diya, sunglasses hooked over a wire, a Platform 9¾ ticket, an index card reading git commit -m “the messy middle”, a beaded friendship bracelet and an evil-eye keyring. In the middle, a large window over a pixel-art city, under a swirling night sky. On the right, a framed All Too Well lyrics poster in a slim black frame, a Platform 9¾ sign on a wrought-iron bracket with a pothos trailing past it, a white digital clock on a small wooden ledge showing the time, date and day in New Delhi, above three floating wooden shelves holding Diya's recommended books: the seven Harry Potter books, To Kill a Mockingbird and And Then There Were None; The Housemaid face-out beside Never Lie, The Perfect Son, Then She Was Gone and The Family Upstairs, with Matthew Perry's memoir and Maybe You Should Talk to Someone lying flat; and It Ends with Us face-out beside Lauren Asher's Fine Print series, The Love Hypothesis, Twisted Love and Better Than the Movies. A black-and-white photo-booth strip of Diya, held by a mini clothespin on a length of twine between two nails, running a selfie on a MacBook screen in a classroom and two mirror selfies. On the desk: a cube of sticky notes, a silver MacBook with pink wired earphones plugged into it and lying on the desk, showing a macOS desktop that mirrors the visitor's own Mac: their clock, the browser they are using, their battery and a screenshot from today, beside it a can of Sprite Zero Sugar that pops and fizzes when hovered, a white mug with an orange cartoon cat that says YOU ARE MY POOKIE, used as a pen stand (click a pen to leave Diya a note) full of pens and a ruler, Clawd the pixel desk buddy, a clear 4-key clicker keychain with blue switches, a desk lamp standing on a stack of Diya's books (Harry Potter and the Order of the Phoenix, It Ends with Us, To Kill a Mockingbird, The Housemaid, Maybe You Should Talk to Someone and Then She Was Gone) that switches on as the page opens, the MacBook starting up after it and the Sprite can opening once the desktop appears, plugged into a switchboard on the wall, a desk calendar showing the current month (click it to open Diya's full calendar with India's holidays and her birthday), Diya's old silver Lenovo standing closed in a vertical stand, its lid covered in stickers, a stack of books with round glasses on top, a notebook and pencil, a crumpled ball of paper, and a black Sony speaker that plays a few of Diya's songs when clicked, with a handwritten note on the desk's edge saying keep listening and exploring." preserveAspectRatio="xMidYMax slice">
+  return <svg ref={svgRef} className={s.roomSvg} viewBox={`${frame.x} 0 ${frame.width} 800`} role="img" aria-label="An illustrated evening study. On the left, a black wire grid hung on two clear hooks, with a strand of tiny warm lights wound through it: Diya's prints of Lionel Messi, a Dear Zindagi poster, Snoopy in a graduation cap and a G:YM card held by wooden clothespins, a black-and-white photo-booth strip of Diya, sunglasses hooked over a wire, a Platform 9¾ ticket, an index card reading git commit -m “the messy middle”, a beaded friendship bracelet and an evil-eye keyring. In the middle, a large window over a pixel-art city, under a swirling night sky. On the right, a framed All Too Well lyrics poster in a slim black frame, a Platform 9¾ sign on a wrought-iron bracket with a pothos trailing past it, a white digital clock on a small wooden ledge showing the time, date and day in New Delhi, above three floating wooden shelves holding Diya's recommended books: the seven Harry Potter books, To Kill a Mockingbird and And Then There Were None; The Housemaid face-out beside Never Lie, The Perfect Son, Then She Was Gone and The Family Upstairs, with Matthew Perry's memoir and Maybe You Should Talk to Someone lying flat; and It Ends with Us face-out beside Lauren Asher's Fine Print series, The Love Hypothesis, Twisted Love and Better Than the Movies. A black-and-white photo-booth strip of Diya, held by a mini clothespin on a length of twine between two nails, running a selfie on a MacBook screen in a classroom and two mirror selfies. On the desk: a cube of sticky notes, a silver MacBook with pink wired earphones plugged into it and lying on the desk, showing a macOS desktop that mirrors the visitor's own Mac: their clock, the browser they are using, their battery and a screenshot from today, beside it a can of Sprite Zero Sugar that pops and fizzes when hovered, a white mug with an orange cartoon cat that says YOU ARE MY POOKIE, used as a pen stand (click a pen to leave Diya a note) full of pens and a ruler, Clawd the pixel desk buddy, a clear 4-key clicker keychain with blue switches, a desk lamp standing on a stack of Diya's books (Harry Potter and the Order of the Phoenix, It Ends with Us, To Kill a Mockingbird, The Housemaid, Maybe You Should Talk to Someone and Then She Was Gone) that switches on as the page opens, the MacBook starting up after it and the Sprite can opening once the desktop appears, plugged into a switchboard on the wall, a desk calendar showing the current month (click it to open Diya's full calendar with India's holidays and her birthday), Diya's old silver Lenovo standing closed in a vertical stand, its lid covered in stickers, a stack of books with round glasses on top, a notebook and pencil, a crumpled ball of paper, and a black Sony speaker that plays a few of Diya's songs when clicked, with a handwritten note on the desk's edge saying keep listening and exploring." preserveAspectRatio="xMidYMax slice">
     <defs>
       <linearGradient id="desk-sky" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stopColor="#0f1739" />
@@ -693,6 +693,42 @@ function Room({ time, svgRef, lampOn, onToggleLamp }: { time: { h: number; m: nu
 
 /* ---------- Page ---------- */
 
+// The room is drawn on a 1600×800 canvas, but objects can be dragged past its edges in edit mode.
+// Widen the frame to take in every placed object (never narrower than the canvas), so nothing is
+// cut off at any screen width. Decorative light shapes don't count, and the frame holds still while
+// editing so the room doesn't rescale under the pointer.
+const FRAME_IGNORE = new Set(["lamp-glow", "moonlight"]);
+
+function useRoomFrame(svgRef: RefObject<SVGSVGElement>, layout: unknown, editing: boolean) {
+  const [frame, setFrame] = useState({ x: 0, width: 1600 });
+  useEffect(() => {
+    if (editing) return;
+    let cancelled = false;
+    const measure = () => {
+      const svg = svgRef.current;
+      const ctm = svg?.getScreenCTM();
+      if (!svg || !ctm || cancelled) return;
+      const toRoom = ctm.inverse();
+      let min = 0;
+      let max = 1600;
+      for (const el of Array.from(svg.querySelectorAll<SVGGElement>("[data-edit-id]"))) {
+        if (el.parentElement?.closest("[data-edit-id]") || FRAME_IGNORE.has(el.dataset.editId ?? "")) continue;
+        const box = el.getBoundingClientRect();
+        if (!box.width || !box.height) continue;
+        min = Math.min(min, new DOMPoint(box.left, box.top).matrixTransform(toRoom).x);
+        max = Math.max(max, new DOMPoint(box.right, box.top).matrixTransform(toRoom).x);
+      }
+      const x = Math.floor(min - (min < 0 ? 16 : 0));
+      const width = Math.ceil(max + (max > 1600 ? 16 : 0)) - x;
+      setFrame((old) => (old.x === x && old.width === width ? old : { x, width }));
+    };
+    const raf = requestAnimationFrame(measure);
+    document.fonts?.ready.then(() => requestAnimationFrame(measure));
+    return () => { cancelled = true; cancelAnimationFrame(raf); };
+  }, [svgRef, layout, editing]);
+  return frame;
+}
+
 export default function Desk() {
   return <LayoutProvider><DeskPage /></LayoutProvider>;
 }
@@ -703,6 +739,7 @@ function DeskPage() {
   const introRef = useRef<HTMLDivElement>(null);
   const introGone = Boolean(layout.intro?.deleted || layout.intro?.hidden);
   useIntroAnchor(roomRef, introRef, layout.intro?.scale ?? 1, editing);
+  const frame = useRoomFrame(roomRef, layout, editing);
   const quoteText = useEditableProps("quote", { line1: QUOTE.lines[0], line2: QUOTE.lines[1], author: QUOTE.author });
   const [lampOn, setLampOn] = useState(false);
   const [flicker, setFlicker] = useState(false);
@@ -793,8 +830,8 @@ function DeskPage() {
           </figure>
 
           <div className={s.scene}>
-            <div className={s.stage}>
-              <Room time={time} svgRef={roomRef} lampOn={lampOn} onToggleLamp={editing ? undefined : toggleLamp} />
+            <div className={s.stage} style={{ "--scene-ratio": frame.width / 800 } as CSSProperties}>
+              <Room time={time} svgRef={roomRef} lampOn={lampOn} onToggleLamp={editing ? undefined : toggleLamp} frame={frame} />
             </div>
             <div className={s.deskTop} aria-hidden="true" />
           </div>

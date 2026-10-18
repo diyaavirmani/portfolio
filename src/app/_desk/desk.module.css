@@ -267,8 +267,9 @@
   z-index: 1;
   left: 50%;
   bottom: var(--desk-h);
-  width: min(calc(100cqw - 32px), calc((100cqh - var(--desk-h) - 24px) * 2));
-  aspect-ratio: 1600 / 800;
+  /* --scene-ratio is the room frame's width / height, widened to fit everything placed in it. */
+  width: min(calc(100cqw - 32px), calc((100cqh - var(--desk-h) - 24px) * var(--scene-ratio, 2)));
+  aspect-ratio: var(--scene-ratio, 2);
   transform: translateX(-50%);
   pointer-events: auto;
 }
