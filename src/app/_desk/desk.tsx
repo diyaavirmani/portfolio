@@ -842,7 +842,6 @@ function DeskPage() {
 
     <footer className={s.footer}>
       <p>© 2026 {profile.name} · {profile.location}</p>
-      <p className={s.privacy}>This site counts visits anonymously: no cookies, no names, no IP addresses.</p>
     </footer>
 
   </div>;

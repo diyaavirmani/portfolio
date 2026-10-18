@@ -1580,13 +1580,6 @@
   margin: 0;
 }
 
-.footer .privacy {
-  flex-basis: 100%;
-  order: 3;
-  font-size: 13px;
-  color: #a99f88;
-}
-
 .footer a {
   display: inline-flex;
   align-items: center;
