@@ -1,0 +1,14 @@
+/* The lamp's warm light on the stickered lid fades out when the lamp is switched off. */
+.glow {
+  transition: opacity 0.6s ease;
+}
+
+[data-lamp="off"] .glow {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    transition: none;
+  }
+}

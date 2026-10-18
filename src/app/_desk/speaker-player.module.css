@@ -1,0 +1,326 @@
+/* The Sony speaker as a button */
+.speaker {
+  cursor: pointer;
+  outline: none;
+}
+
+.speaker:focus-visible {
+  outline: 3px solid #f2b45a;
+  outline-offset: 4px;
+}
+
+:global([data-editing]) .speaker {
+  cursor: inherit;
+}
+
+/* Status light on the speaker's front: off until a song is playing */
+.led {
+  fill: #2a2a30;
+  transition: fill 0.3s ease;
+}
+
+.led[data-on] {
+  fill: #e8f6ff;
+}
+
+.ledGlow {
+  fill: #9fd8ff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ledGlow[data-on] {
+  opacity: 0.45;
+}
+
+/* "keep listening and exploring", written on the desk's front edge after the room has settled */
+.hint {
+  pointer-events: none;
+}
+
+:global([data-editing]) .hint {
+  display: none;
+}
+
+.hintText {
+  font-family: var(--desk-hand), cursive;
+  font-size: 25px;
+  font-weight: 600;
+  fill: #f6dca6;
+  animation: hintIn 0.8s ease-out 2.6s both;
+}
+
+.hintArrow,
+.hintArrowHead {
+  fill: none;
+  stroke: #f6dca6;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.hintArrow {
+  animation: hintDraw 0.9s ease-in-out 3.2s both;
+}
+
+.hintArrowHead {
+  animation: hintDraw 0.3s ease-out 4.05s both;
+}
+
+@keyframes hintIn {
+  from { opacity: 0; }
+}
+
+@keyframes hintDraw {
+  from { stroke-dashoffset: 1; }
+}
+
+@media (max-width: 899px) {
+  .hint {
+    display: none;
+  }
+}
+
+/* The player: docked in the bottom-right corner so the music keeps going while visitors explore */
+.player {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 32px));
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+  padding: 12px 12px 10px;
+  border-radius: 16px;
+  background: #17181d;
+  color: #f3e6c8;
+  font-family: var(--desk-body), system-ui, sans-serif;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: playerIn 0.22s ease-out;
+}
+
+@keyframes playerIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 2px 8px;
+}
+
+.label {
+  margin: 0;
+  font-family: var(--desk-pixel), ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9fd8ff;
+}
+
+.headButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.textButton,
+.close {
+  min-height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #e6d9bb;
+  font: inherit;
+  cursor: pointer;
+}
+
+.textButton {
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.close {
+  width: 36px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.textButton:hover,
+.close:hover {
+  background: rgba(243, 230, 200, 0.1);
+}
+
+.screen iframe {
+  display: block;
+  width: 100%;
+  height: 152px;
+  border: 0;
+  border-radius: 12px;
+  background: #282828;
+}
+
+.screen[data-empty] {
+  display: none;
+}
+
+/* Folded away: just a "now playing" pill. The Spotify player stays loaded (hidden, not removed),
+   so the song carries on. */
+.player[data-mini] {
+  width: min(360px, calc(100vw - 32px));
+  padding: 8px 8px 8px 14px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.player[data-mini] .screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(50%);
+}
+
+.mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mini .trackText {
+  flex: 1;
+}
+
+.mini .title,
+.mini .artist {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mini .title {
+  font-size: 14px;
+}
+
+.mini .artist {
+  font-size: 12px;
+}
+
+.miniLed {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3a3c44;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.miniLed[data-on] {
+  background: #e8f6ff;
+  box-shadow: 0 0 8px 2px rgba(159, 216, 255, 0.55);
+}
+
+.iconButton {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(243, 230, 200, 0.1);
+  color: #f3e6c8;
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background: rgba(243, 230, 200, 0.18);
+}
+
+.mini .close {
+  flex: none;
+  width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+}
+
+.tracks {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.track:hover {
+  background: rgba(243, 230, 200, 0.08);
+}
+
+.track[aria-current] {
+  background: rgba(159, 216, 255, 0.12);
+}
+
+.number {
+  flex: none;
+  width: 22px;
+  font-family: var(--desk-pixel), ui-monospace, monospace;
+  font-size: 13px;
+  color: #8a8f9c;
+}
+
+.trackText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.artist {
+  font-size: 13px;
+  line-height: 1.3;
+  color: #b9ae94;
+}
+
+.player :focus-visible {
+  outline: 3px solid #f2b45a;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .player {
+    animation: none;
+  }
+}

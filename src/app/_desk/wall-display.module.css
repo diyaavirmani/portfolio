@@ -1,0 +1,66 @@
+/* Text on the wall display's prints, cards and charms (SVG units). */
+
+.caption {
+  font-family: var(--desk-display), Georgia, serif;
+  font-size: 6px;
+  font-style: italic;
+  fill: #4a4236;
+}
+
+.stripHead {
+  font-family: var(--desk-body), system-ui, sans-serif;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: #2b2a27;
+}
+
+.ticketBand {
+  font-family: var(--desk-body), system-ui, sans-serif;
+  font-size: 5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  fill: #f3e2b8;
+}
+
+.ticketBig {
+  font-family: var(--desk-display), Georgia, serif;
+  font-size: 10px;
+  font-weight: 700;
+  fill: #5c1518;
+}
+
+.ticketSmall {
+  font-family: var(--desk-body), system-ui, sans-serif;
+  font-size: 4.2px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  fill: #6b4b3a;
+}
+
+.ticketStub {
+  font-family: var(--desk-display), Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  fill: #7b1f22;
+}
+
+.code,
+.codeStrong {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 7.4px;
+  fill: #2d3a55;
+}
+
+.codeStrong {
+  font-weight: 700;
+  fill: #1d2333;
+}
+
+.bead {
+  font-family: var(--desk-body), system-ui, sans-serif;
+  font-size: 7px;
+  font-weight: 900;
+  fill: #1d2333;
+}

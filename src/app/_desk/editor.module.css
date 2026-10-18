@@ -1,0 +1,227 @@
+/* Edit mode chrome (development only): selection box, handles and the inspector panel. */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.outline {
+  fill: none;
+  stroke: #f2b45a;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+}
+
+.tag {
+  font: 600 12px/1 system-ui, -apple-system, sans-serif;
+  fill: #f2b45a;
+  paint-order: stroke;
+  stroke: #141d33;
+  stroke-width: 3px;
+}
+
+.handle {
+  fill: #fffaf0;
+  stroke: #f2b45a;
+  stroke-width: 2;
+  pointer-events: auto;
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.rotate {
+  fill: #f2b45a;
+  stroke: #fffaf0;
+  cursor: grab;
+}
+
+.panel {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1001;
+  width: min(300px, calc(100vw - 24px));
+  max-height: min(78vh, 640px);
+  overflow: auto;
+  border: 1px solid rgba(243, 230, 200, 0.22);
+  border-radius: 14px;
+  background: rgba(14, 20, 36, 0.96);
+  color: #f3e6c8;
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+.head {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: inherit;
+  border-bottom: 1px solid rgba(243, 230, 200, 0.12);
+}
+
+.head strong {
+  margin-right: auto;
+  font-size: 14px;
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.panel button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(243, 230, 200, 0.28);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.panel button:hover:not(:disabled) {
+  background: rgba(243, 230, 200, 0.1);
+}
+
+.panel button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.panel button:focus-visible,
+.panel input:focus-visible,
+.panel select:focus-visible {
+  outline: 2px solid #f2b45a;
+  outline-offset: 2px;
+}
+
+.primary {
+  border-color: #f2b45a !important;
+  background: #f2b45a !important;
+  color: #1d2333 !important;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.field span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #cfc3a5;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid rgba(243, 230, 200, 0.28);
+  border-radius: 8px;
+  background: #18223b;
+  color: #f3e6c8;
+  font: inherit;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.row button {
+  flex: 1 1 auto;
+}
+
+.draft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(242, 180, 90, 0.14);
+}
+
+.draft p {
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+.help {
+  margin: 0;
+  font-size: 12px;
+  color: #b9b09a;
+}
+
+.status {
+  margin: 0;
+  font-size: 12px;
+  color: #f2b45a;
+}
+
+.warn {
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(229, 112, 126, 0.16);
+  color: #f7b8bf;
+  font-size: 12px;
+}
+
+.danger {
+  border-color: rgba(229, 112, 126, 0.7) !important;
+  color: #f7b8bf !important;
+}
+
+.danger:hover:not(:disabled) {
+  background: rgba(229, 112, 126, 0.16) !important;
+}
+
+.deletedList {
+  display: grid;
+  gap: 6px;
+}
+
+.deletedList > span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #cfc3a5;
+}
+
+.deletedList ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deletedList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}

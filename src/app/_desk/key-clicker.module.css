@@ -1,0 +1,38 @@
+/* The key clicker: press areas, the moving caps and the LEDs. */
+
+.hit {
+  fill: #000;
+  fill-opacity: 0;
+  pointer-events: all;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.cap {
+  transition: transform 0.04s ease-out;
+}
+
+.led {
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.28s ease-out;
+}
+
+.led[data-lit] {
+  opacity: 1;
+  transition-duration: 0.03s;
+}
+
+.spill {
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.28s ease-out;
+}
+
+.spill[data-lit] {
+  opacity: 0.5;
+  transition-duration: 0.03s;
+}

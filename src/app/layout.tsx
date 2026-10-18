@@ -1,12 +1,11 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
-import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
-  title: "Diya Virmani — Portfolio",
-  description: "Diya Virmani, developer in New Delhi working on agentic systems, RAG pipelines, and ML/DL architectures.",
+  title: "Diya Virmani · Developer, agentic systems, RAG & ML",
+  description: "Diya Virmani, developer in New Delhi working on agentic systems, RAG pipelines, and ML/DL architectures. B.Tech AI & DS at VIPS-TC, graduating 2027.",
   icons: {
     icon: '/favicon.svg',
   }
@@ -19,11 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="scrollbar-hide">
+      <body>
         <Analytics/>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )

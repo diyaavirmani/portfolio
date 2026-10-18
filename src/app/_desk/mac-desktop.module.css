@@ -1,0 +1,48 @@
+/* Text on the MacBook's macOS desktop. Sizes are in room units (the scene's viewBox). */
+
+.desktop text {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", sans-serif;
+}
+
+.menu {
+  font-size: 5.2px;
+  font-weight: 500;
+  fill: #fff;
+}
+
+.app {
+  font-weight: 700;
+}
+
+.clock {
+  font-size: 5.2px;
+  font-weight: 500;
+  fill: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 3.9px;
+  font-weight: 500;
+  fill: #fff;
+}
+
+.labelShadow {
+  font-size: 3.9px;
+  font-weight: 500;
+  fill: #000;
+  opacity: 0.4;
+}
+
+.calMonth {
+  font-size: 2.2px;
+  font-weight: 700;
+  fill: #ff3b30;
+  letter-spacing: 0.04em;
+}
+
+.calDay {
+  font-size: 5.6px;
+  font-weight: 400;
+  fill: #1d1d1f;
+}

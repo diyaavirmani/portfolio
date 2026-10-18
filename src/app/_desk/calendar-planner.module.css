@@ -1,0 +1,460 @@
+/* The full calendar that opens from the desk card: cream paper, a wavy lavender band, pink for
+   today and Diya's birthday, red for Sundays and public holidays, as on an Indian wall calendar. */
+
+.trigger {
+  cursor: pointer;
+  outline: none;
+}
+
+.trigger:focus-visible {
+  filter: drop-shadow(0 0 2px #f2b45a) drop-shadow(0 0 6px rgba(242, 180, 90, 0.8));
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(8, 12, 26, 0.62);
+  backdrop-filter: blur(2px);
+  animation: plannerFade 0.18s ease-out;
+}
+
+.card {
+  --ink: #1d2333;
+  --muted: #4a4f66;
+  --lavender: #d6dcf3;
+  --purple: #6b63a8;
+  --pink: #e5707e;
+  --red: #b8392b;
+  --blue: #3d6fd8;
+  --soft: #8f88c9;
+
+  position: relative;
+  width: min(640px, 100%);
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  border: 1px solid #d9d4e6;
+  border-radius: 22px;
+  background: #fdfcf8;
+  color: var(--ink);
+  font-family: var(--desk-body), system-ui, sans-serif;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(255, 255, 255, 0.6) inset;
+  animation: plannerRise 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.band {
+  position: relative;
+  padding: 22px 24px 30px;
+  background: var(--lavender);
+  border-radius: 22px 22px 0 0;
+}
+
+/* The band's wavy lower edge, like the card on the desk */
+.band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 9px;
+  background: radial-gradient(14px 9px at 14px 0, var(--lavender) 98%, transparent 100%) 0 0 / 28px 9px repeat-x;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  line-height: 1;
+}
+
+.month {
+  font-family: var(--desk-display), Georgia, serif;
+  font-size: clamp(32px, 7vw, 44px);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.year {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -6px -8px 0 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.navButton,
+.todayButton {
+  min-width: 44px;
+  min-height: 40px;
+  border: 1px solid rgba(29, 35, 51, 0.18);
+  border-radius: 999px;
+  background: #fdfcf8;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.todayButton {
+  padding: 0 16px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.todayButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.close:hover,
+.navButton:hover,
+.todayButton:not(:disabled):hover {
+  background: #fff;
+}
+
+.close:focus-visible,
+.navButton:focus-visible,
+.todayButton:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.grid {
+  padding: 22px 18px 6px;
+}
+
+.weekRow,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.weekday {
+  padding-bottom: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sunday {
+  color: var(--red);
+}
+
+.pad {
+  min-height: 64px;
+}
+
+.day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+  min-height: 64px;
+  padding: 6px 6px 8px;
+  border-radius: 10px;
+  background: #f5f2fb;
+}
+
+.number {
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.red .number {
+  color: var(--red);
+}
+
+.today .number {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+}
+
+.birthday {
+  background: #fde7ea;
+  box-shadow: inset 0 0 0 1.5px var(--pink);
+}
+
+.heart {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 14px;
+  height: 12px;
+  fill: var(--pink);
+}
+
+.chip {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip.public {
+  color: var(--red);
+}
+
+.chip.event {
+  color: var(--blue);
+}
+
+.dots {
+  display: flex;
+  gap: 3px;
+  margin-top: auto;
+}
+
+.dots i,
+.legend i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dots .birthday,
+.legend .birthday {
+  background: var(--pink);
+  box-shadow: none;
+}
+
+.dots .public,
+.legend .public {
+  background: var(--red);
+}
+
+.dots .event,
+.legend .event {
+  background: var(--blue);
+}
+
+.dots .observance,
+.legend .observance {
+  background: var(--soft);
+}
+
+.list {
+  padding: 10px 24px 4px;
+}
+
+.listTitle {
+  margin: 0 0 8px;
+  font-family: var(--desk-display), Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.status {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0 8px 12px;
+  border-bottom: 1px solid #ece8f3;
+  border-left: 3px solid var(--soft);
+  font-size: 15px;
+}
+
+.list li.birthday {
+  border-left-color: var(--pink);
+  background: none;
+  box-shadow: none;
+}
+
+.list li.public {
+  border-left-color: var(--red);
+}
+
+.list li.event {
+  border-left-color: var(--blue);
+}
+
+.listDate {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.listName {
+  min-width: 0;
+}
+
+.listKind {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.foot {
+  padding: 14px 24px 20px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.source {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.sign {
+  margin: 12px 0 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-align: center;
+  color: var(--purple);
+}
+
+@keyframes plannerFade {
+  from { opacity: 0; }
+}
+
+@keyframes plannerRise {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+}
+
+@media (max-width: 560px) {
+  .band {
+    padding: 18px 16px 26px;
+  }
+
+  .grid {
+    padding: 18px 10px 4px;
+  }
+
+  .weekRow,
+  .days {
+    gap: 4px;
+  }
+
+  .weekday {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .day,
+  .pad {
+    min-height: 48px;
+  }
+
+  .day {
+    padding: 5px 4px 6px;
+  }
+
+  .number {
+    font-size: 13px;
+  }
+
+  .chip {
+    display: none;
+  }
+
+  .heart {
+    top: 5px;
+    right: 4px;
+    width: 11px;
+    height: 10px;
+  }
+
+  .list,
+  .foot {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .list li {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .listKind {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .card {
+    animation: none;
+  }
+}
